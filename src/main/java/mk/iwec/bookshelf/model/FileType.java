@@ -28,6 +28,6 @@ public class FileType {
 	@Column(name = "short_name", length = 50, nullable = false, unique = true)
 	private String shortName;
 
-	@ManyToMany(mappedBy = "books", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "fileTypes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Book> books;
 }

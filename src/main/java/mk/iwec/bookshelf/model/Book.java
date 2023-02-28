@@ -51,35 +51,25 @@ public class Book {
 	private String bookFileName;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@Column(nullable = false)
 	private Language language;
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@Column(nullable = false)
 	private Publisher publisher;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "r_books_authors", 
-	joinColumns = @JoinColumn(name = "book_id"), 
-	inverseJoinColumns = @JoinColumn(name = "author_id"))
+	@JoinTable(name = "r_books_authors", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private Set<Author> authors;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "r_books_translators", 
-	joinColumns = @JoinColumn(name = "book_id"), 
-	inverseJoinColumns = @JoinColumn(name = "translator_id"))
+	@JoinTable(name = "r_books_translators", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "translator_id"))
 	private Set<Translator> translators;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "r_books_genres", 
-	joinColumns = @JoinColumn(name = "book_id"), 
-	inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	@JoinTable(name = "r_books_genres", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "r_books_file_types", 
-	joinColumns = @JoinColumn(name = "book_id"), 
-	inverseJoinColumns = @JoinColumn(name = "file_type_id"))
+	@JoinTable(name = "r_books_file_types", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "file_type_id"))
 	private Set<FileType> fileTypes;
 
 }

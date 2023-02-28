@@ -31,7 +31,7 @@ public class Author {
 	@Column(name = "last_name", nullable = false)
 	private String lastName;
 
-	@ManyToMany(mappedBy = "books", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Book> books;
 
 }
