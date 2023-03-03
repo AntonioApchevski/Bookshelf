@@ -8,10 +8,10 @@ public interface GenericService<T> {
 
 	public List<T> findAll();
 
-	public int insert(T t);
+	public void insert(T t);
 
-	public int deleteById(Integer id);
+	public void deleteById(Integer id);
 
-	public int update(T t);
+	public void update(Integer id, T t);
 
 }
