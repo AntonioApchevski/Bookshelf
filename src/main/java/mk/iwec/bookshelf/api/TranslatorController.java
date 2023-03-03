@@ -37,12 +37,12 @@ public class TranslatorController {
 		translatorService.insert(translator);
 	}
 
-	@PutMapping("/translator/{1}")
+	@PutMapping("/translator/{id}")
 	public void updateTranslator(@PathVariable("id") Integer id, @RequestBody Translator translator) {
 		translatorService.update(id, translator);
 	}
 
-	@DeleteMapping("/translator/{1}")
+	@DeleteMapping("/translator/{id}")
 	public void deleteTranslator(@PathVariable("id") Integer id) {
 		translatorService.deleteById(id);
 	}
