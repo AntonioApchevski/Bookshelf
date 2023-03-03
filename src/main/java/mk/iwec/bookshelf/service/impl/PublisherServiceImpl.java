@@ -1,6 +1,7 @@
 package mk.iwec.bookshelf.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,7 @@ public class PublisherServiceImpl implements PublisherService {
 
 	@Override
 	public Publisher findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return publisherRepository.findById(id).get();
 	}
 
 	@Override
@@ -27,21 +27,30 @@ public class PublisherServiceImpl implements PublisherService {
 	}
 
 	@Override
-	public int insert(Publisher t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void insert(Publisher publisher) {
+		Optional<Publisher> publisherExists = publisherRepository.findPublisherByName(publisher.getName());
+		if (publisherExists.isPresent()) {
+			throw new IllegalStateException("Publisher already exists in database.");
+		}
+		publisherRepository.save(publisher);
 	}
 
 	@Override
-	public int deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteById(Integer id) {
+		boolean publisherExists = publisherRepository.existsById(id);
+		if (!publisherExists) {
+			throw new IllegalStateException("Publisher with the given id does not exist in database.");
+		}
+		publisherRepository.deleteById(id);
 	}
 
 	@Override
-	public int update(Publisher t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update(Integer id, Publisher publisher) {
+		Publisher publisherExists = publisherRepository.findById(id).orElseThrow(
+				() -> new IllegalStateException("Publisher with the given id does not exist in database."));
+
+		publisherExists.setName(publisher.getName());
+		publisherExists.setLocation(publisher.getLocation());
 	}
 
 }

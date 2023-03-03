@@ -1,6 +1,7 @@
 package mk.iwec.bookshelf.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,7 @@ public class GenreServiceImpl implements GenreService {
 
 	@Override
 	public Genre findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return genreRepository.findById(id).get();
 	}
 
 	@Override
@@ -27,21 +27,30 @@ public class GenreServiceImpl implements GenreService {
 	}
 
 	@Override
-	public int insert(Genre t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void insert(Genre genre) {
+		Optional<Genre> genreExists = genreRepository.findGenreByName(genre.getName());
+		if (genreExists.isPresent()) {
+			throw new IllegalStateException("Genre already exists in database.");
+		}
+		genreRepository.save(genre);
 	}
 
 	@Override
-	public int deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteById(Integer id) {
+		boolean genreExists = genreRepository.existsById(id);
+		if (!genreExists) {
+			throw new IllegalStateException("Book with the given id does not exist in database.");
+		}
+		genreRepository.deleteById(id);
 	}
 
 	@Override
-	public int update(Genre t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update(Integer id, Genre genre) {
+		Genre genreExists = genreRepository.findById(id)
+				.orElseThrow(() -> new IllegalStateException("Book with the given id does not exist in database."));
+
+		genreExists.setName(genre.getName());
+		genreExists.setBooks(genre.getBooks());
 	}
 
 }

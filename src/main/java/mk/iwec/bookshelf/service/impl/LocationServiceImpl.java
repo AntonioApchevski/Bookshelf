@@ -1,6 +1,7 @@
 package mk.iwec.bookshelf.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,7 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public Location findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return locationRepository.findById(id).get();
 	}
 
 	@Override
@@ -27,21 +27,30 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public int insert(Location t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void insert(Location location) {
+		Optional<Location> locationExists = locationRepository.findLocationByCountryName(location.getCountryName());
+		if (locationExists.isPresent()) {
+			throw new IllegalStateException("Book already exists in database.");
+		}
+		locationRepository.save(location);
 	}
 
 	@Override
-	public int deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteById(Integer id) {
+		boolean locationExists = locationRepository.existsById(id);
+		if (!locationExists) {
+			throw new IllegalStateException("Location with the given id does not exist in database.");
+		}
+		locationRepository.deleteById(id);
 	}
 
 	@Override
-	public int update(Location t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update(Integer id, Location location) {
+		Location locationExists = locationRepository.findById(id)
+				.orElseThrow(() -> new IllegalStateException("Book with the given id does not exist in database."));
+
+		locationExists.setCityName(location.getCityName());
+		locationExists.setCountryName(location.getCountryName());
 	}
 
 }

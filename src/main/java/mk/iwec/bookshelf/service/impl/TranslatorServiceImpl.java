@@ -1,6 +1,7 @@
 package mk.iwec.bookshelf.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,7 @@ public class TranslatorServiceImpl implements TranslatorService {
 
 	@Override
 	public Translator findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return translatorRepository.findById(id).get();
 	}
 
 	@Override
@@ -27,21 +27,33 @@ public class TranslatorServiceImpl implements TranslatorService {
 	}
 
 	@Override
-	public int insert(Translator t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void insert(Translator translator) {
+		Optional<Translator> translatorExists = translatorRepository.findTranslatorByFirstNameAndMiddleNameAndLastName(
+				translator.getFirstName(), translator.getMiddleName(), translator.getLastName());
+		if (translatorExists.isPresent()) {
+			throw new IllegalStateException("Translator already exists in database.");
+		}
+		translatorRepository.save(translator);
 	}
 
 	@Override
-	public int deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteById(Integer id) {
+		boolean translatorExists = translatorRepository.existsById(id);
+		if (!translatorExists) {
+			throw new IllegalStateException("Translator with the given id does not exist in database.");
+		}
+		translatorRepository.deleteById(id);
 	}
 
 	@Override
-	public int update(Translator t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void update(Integer id, Translator translator) {
+		Translator translatorExists = translatorRepository.findById(id).orElseThrow(
+				() -> new IllegalStateException("Translator with the given id does not exist in database."));
+
+		translatorExists.setFirstName(translator.getFirstName());
+		translatorExists.setMiddleName(translator.getMiddleName());
+		translatorExists.setLastName(translator.getLastName());
+		translatorExists.setBooks(translator.getBooks());
 	}
 
 }
