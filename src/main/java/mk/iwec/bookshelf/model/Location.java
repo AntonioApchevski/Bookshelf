@@ -17,7 +17,10 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
+	@Column(nullable = false)
+	private String cityName;
+
 	@Column(nullable = false, unique = true)
-	private String name;
+	private String countryName;
 
 }
