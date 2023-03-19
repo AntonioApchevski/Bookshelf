@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Project</title>
+
+    <!-- swiper link-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="loadAjaxBooks()">
+
+    <!-- Header section starts -->
+    <header class="header">
+
+        <div class="header-1">
+            <h1>Antonio's Bookshelf</h1>
+        </div>
+    
+        <div class="header-2">
+            <nav class="navbar">
+                <a href="https://iwec.mk/">⋮IW Education Center</a>
+            </nav>
+        </div>
+    
+    </header>
+    <!-- Header section ends -->
+
+    <!-- Home section starts -->
+    <div class="home-container">
+
+        <section class="home" id="home">
+    
+            <div class="row">
+        
+                <div class="swiper books-slider">
+                    <div class="swiper-wrapper" id="book-covers">
+                        <p>Books</p>
+                    </div>
+                    <img src="image/stand.png" class="stand" alt="">
+                </div>
+        
+            </div>
+        
+        </section>
+    
+    </div>    
+    <!-- Home section ends -->
+
+    <!-- Middle section starts-->
+    <div class="middle-2">
+            <nav class="navbar">
+                <a href="#" id="add-btn">⋮Add Book⋮</a>
+                <a href="#" id="update-btn">⋮Update Book⋮</a>
+                <a href="#" id="delete-btn">⋮Delete Book⋮</a>
+            </nav>
+        </div>
+    <!-- Middle section ends-->
+    
+    <!-- Add Book form starts-->
+    <div class="add-form-container">
+
+        <div id="close-add-btn" class="fas fa-times"></div>
+    
+        <form action="" id="add-form">
+            <h3>add book</h3>
+            <div class="columns">
+                <div>
+                    <span>title</span>
+                    <input type="text" name="" class="box" placeholder="enter book title" id="title">                   
+                </div>
+                <div>
+                    <span>subtitle</span>
+                    <input type="text" name="" class="box" placeholder="enter book subtitle" id="subtitle">                   
+                </div>
+                <div>
+                    <span>edition number</span>
+                    <input type="text" name="" class="box" placeholder="enter edition number" id="edition-number">        
+                </div>
+                <div>
+                    <span>page number</span>
+                    <input type="text" name="" class="box" placeholder="enter page number" id="page-number">        
+                </div>
+                <div>
+                    <span>publication date</span>
+                    <input type="text" name="" class="box" placeholder="enter date (YYYY-MM-DD)" id="publication-date">        
+                </div>
+                <div>
+                    <span>cover file name</span>
+                    <input type="text" name="" class="box" placeholder="enter cover file name" id="cover-file-name">
+                </div>
+                <div>
+                    <span>isbn</span>
+                    <input type="text" name="" class="box" placeholder="enter isbn" id="isbn">        
+                </div>
+                <div>
+                    <span>summary</span>
+                    <input type="text" name="" class="box" placeholder="enter summary" id="summary">        
+                </div>
+                <div>
+                    <span>language</span>
+                    <input type="text" name="" class="box" placeholder="enter language" id="language-name">        
+                </div>
+                <div>
+                    <span>publisher</span>
+                    <input type="text" name="" class="box" placeholder="enter publisher name" id="publisher-name">        
+                </div>
+                <div>
+                    <span>author first name</span>
+                    <input type="text" name="" class="box" placeholder="enter author name" id="author-first-name">        
+                </div>
+                <div>
+                    <span>author last name</span>
+                    <input type="text" name="" class="box" placeholder="enter author name" id="author-last-name">        
+                </div>
+            <input type="submit" value="POST" class="btn">
+            </div>
+        </form>
+    </div>
+    <!-- Add Book form ends -->
+
+    <!-- Update Book form starts -->
+    <div class="update-form-container">
+
+        <div id="close-update-btn" class="fas fa-times"></div>
+    
+        <form action="" id="update-form">
+            <h3>update book</h3>                 
+            <div class="columns">
+                <div>
+                    <span>book id</span>
+                    <input type="text" name="" class="box" placeholder="enter book id" id="update-id">                   
+                </div>
+                <div>
+                    <span>title</span>
+                    <input type="text" name="" class="box" placeholder="enter book title" id="u-title">                   
+                </div>
+                <div>
+                    <span>subtitle</span>
+                    <input type="text" name="" class="box" placeholder="enter book subtitle" id="u-subtitle">                   
+                </div>
+                <div>
+                    <span>page number</span>
+                    <input type="text" name="" class="box" placeholder="enter page number" id="u-page-number">        
+                </div>
+                <div>
+                    <span>publication date</span>
+                    <input type="text" name="" class="box" placeholder="enter date (YYYY-MM-DD)" id="u-publication-date">        
+                </div>
+                <div>
+                    <span>cover file name</span>
+                    <input type="text" name="" class="box" placeholder="enter cover file name" id="u-cover-file-name">
+                </div>
+                <div>
+                    <span>isbn</span>
+                    <input type="text" name="" class="box" placeholder="enter isbn" id="u-isbn">        
+                </div>
+                <div>
+                    <span>summary</span>
+                    <input type="text" name="" class="box" placeholder="enter summary" id="u-summary">        
+                </div>
+                <div>
+                    <span>language</span>
+                    <input type="text" name="" class="box" placeholder="enter language name" id="u-language-name">                  
+                </div>
+                <div>
+                    <span>publisher</span>
+                    <input type="text" name="" class="box" placeholder="enter publisher name" id="u-publisher-name">        
+                </div>
+                <div>
+                    <span>author first name</span>
+                    <input type="text" name="" class="box" placeholder="enter author name" id="u-author-first-name">        
+                </div>
+                <div>
+                    <span>author last name</span>
+                    <input type="text" name="" class="box" placeholder="enter author name" id="u-author-last-name">        
+                </div>
+            <input type="submit" value="UPDATE" class="btn">
+            </div>
+        </form>
+    </div>
+    <!-- Update Book form ends -->
+
+    <!-- Delete Book form starts-->
+    <div class="delete-form-container">
+
+        <div id="close-delete-btn" class="fas fa-times"></div>
+    
+        <form action="" id="delete-form">
+            <h3>delete book</h3>
+            <span>book id</span>
+            <input type="text" name="" class="box" placeholder="enter book id" id="delete-id">
+            <input type="submit" value="DELETE" class="btn">
+        </form>
+    
+    </div>
+    <!-- Delete Book form ends -->
+
+    <!-- Description section starts  -->
+    <div class="description-container">
+
+        <section class="description">
+
+            <div class="content" id="book-description">
+                <h2 id="title"></h2>
+                <h3 id="subtitle"></h3>
+                <h3></h3>
+                <h3 id="authors"></h3>
+                <h4 id="publisher"></h4>
+                <p id="summary"></p>
+                <p></p>
+            </div>
+        
+            <div class="image">
+                <img src="image/istockphoto-1155707357-170667a-removebg-preview.png" alt="">
+            </div>
+        
+        </section>
+        
+        
+    </div>
+    <!-- Description section ends -->
+
+    <!-- Footer section starts-->
+    <section class="footer" id="footer">
+        <div class="credit"> created by <span style="color:#424343">antonio apchevski</span> | <span style="color:#c9262f">⋮IW Education Center </span>| Mentor <span style="color:#424343">Dean Joshevski</span></div>
+    </section>
+    <!-- Footer section ends-->
+
+    <!-- swiper -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="js/ajax.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
