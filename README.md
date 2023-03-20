@@ -2,6 +2,18 @@
 
 The Bookshelf project is a web application that allows users to manage a collection of books in a PostgreSQL database. The project is built using Spring Boot and Hibernate on the back-end, and HTML, CSS and JavaScript on the front-end.
 
+## Technology Stack
+
+The Bookshelf project uses the following technologies:
+
+Spring Boot: Back-end framework for building web applications
+Hibernate: Object-relational mapping library for database access
+Lombok: Annotation-based Java library that allows you to reduce boilerplate code
+PostgreSQL: Open-source relational database management system
+HTML: Markup language for creating web pages
+CSS: Styling language for web pages
+JavaScript: Programming language for adding interactivity to web pages
+
 ## Installation
 
 To use the Bookshelf project, follow these steps:
@@ -11,19 +23,21 @@ git clone https://AntonioApchevski@bitbucket.org/antonioapchevski/bookshelf.git
 
 2. Set up the database by creating a PostgreSQL database:
     1. Install PostgreSQL if you haven't already done so.
-    2. Open a terminal or command prompt and start the PostgreSQL command-line interface.
-    3. Create a new database for the bookshelf project: 
+    2. Create a new database for the bookshelf project: 
     CREATE DATABASE bookshelf;
-    4. Connect to the newly created database: 
-    \c bookshelf
-    5. Import the SQL file containing the tables and data:
-     \i ./db/bookshelf.sql
+    3. Go in the db/ folder with the bookshelf.sql file
+    4. Open the terminal or command prompt from that directory
+    5. Write the following command to import the tables with data to your database:
+     psql -U (Your username) -d bookshelf -f bookshelf.sql
+     You will also be prompted to enter the password for your user.
     6. Configure the application (go to the application.properties file and set the db username and password accordingly.)
     7. Verify that the tables and data have been created by running a SELECT query on the tables:
-     SELECT * FROM book;
+     SELECT * FROM books;
 
 3. Build and run the Spring Boot back-end application by navigating to the backend/ directory and running the following command:
-mvn spring-boot:run
+mvn spring-boot:run or mvnw sprin-boot:run (if you don't have maven)
+
+4. Open the index.html file by navigating to the frontend/ directory
 
 ## Usage
 
